@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0 (7574) - http://www.bohemiancoding.com/sketch -->
+    <title>SVG</title>
+    <description>Created with Sketch.</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M94.480955,0 L5.51904501,0 C2.4702691,0 0,2.4702691 0,5.51904501 L0,94.480955 C0,97.5289815 2.4702691,100 5.51904501,100 L53.4129654,100 L53.4129654,61.2748882 L40.3812,61.2748882 L40.3812,46.1827542 L53.4129654,46.1827542 L53.4129654,35.0528674 C53.4129654,22.1365036 61.3018652,15.1033744 72.8240425,15.1033744 C78.3430875,15.1033744 83.0869184,15.514399 84.4691151,15.6979925 L84.4691151,29.1962352 L76.4779276,29.199982 C70.2113948,29.199982 68.9981791,32.1775686 68.9981791,36.5470936 L68.9981791,46.1827542 L83.9430635,46.1827542 L81.9969726,61.2748882 L68.9981791,61.2748882 L68.9981791,100 L94.480955,100 C97.5289815,100 100,97.5289815 100,94.480955 L100,5.51904501 C100,2.4702691 97.5289815,0 94.480955,0" id="facebook" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>
