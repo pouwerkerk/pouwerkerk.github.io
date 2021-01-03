@@ -1,6 +1,47 @@
 const styles = require("./static/styles.css");
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
+const stops = require("./lib/stops");
+const R = require("ramda");
+
+function drawRoute(map)
+{
+    const coordinates = R.map(({ lat, lon }) => ([lon, lat]), stops);
+
+    map.on('load', function ()
+    {
+        map.addSource('route',
+        {
+            'type': 'geojson',
+            'data':
+            {
+                'type': 'Feature',
+                'properties': {},
+                'geometry':
+                {
+                    'type': 'LineString',
+                    coordinates
+                }
+            }
+        });
+        map.addLayer({
+            'id': 'route',
+            'type': 'line',
+            'source': 'route',
+            'layout':
+            {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            'paint':
+            {
+                'line-color': '#888',
+                'line-width': 8
+            }
+        });
+    });
+}
+
 (() => {
     const wrapper = document.createElement("div");
     wrapper.id = "map";
@@ -13,5 +54,7 @@ const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
             container: wrapper.id,
             style: 'mapbox://styles/mapbox/streets-v11'
         });
+
+        drawRoute(map);
     }
 })();
