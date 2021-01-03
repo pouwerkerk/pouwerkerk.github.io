@@ -33,7 +33,7 @@ function drawRoute(map)
             },
             'paint':
             {
-                'line-color': '#888',
+                'line-color': 'rgba(0, 0, 0, 0.5)',
                 'line-width': 8
             }
         });
