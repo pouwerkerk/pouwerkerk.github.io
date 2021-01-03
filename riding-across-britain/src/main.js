@@ -22,8 +22,9 @@ function drawRoute(map)
             },
             'paint':
             {
-                'line-color': 'rgba(0, 0, 0, 0.5)',
-                'line-width': 8
+                'line-color': '#fff',
+                'line-width': 5,
+                'line-opacity': 0.75
             }
         });
     });
