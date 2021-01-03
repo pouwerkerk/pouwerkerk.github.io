@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "mapbox-gl": "^2.0.1",
-    "pleasejs": "^0.4.2"
+    "pleasejs": "^0.4.2",
+    "ramda": "^0.27.1"
   }
 }
