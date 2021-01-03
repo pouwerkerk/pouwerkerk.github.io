@@ -86,9 +86,10 @@ function drawRoute(map)
 
         const map = new mapboxgl.Map({
             container: wrapper.id,
-            bounds: bounds,
             style: "mapbox://styles/mapbox/dark-v10"
         });
+
+        map.fitBounds(bounds, { padding: 20 });
 
         drawRoute(map);
     }

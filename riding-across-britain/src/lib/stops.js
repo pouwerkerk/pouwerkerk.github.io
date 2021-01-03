@@ -79,7 +79,8 @@ let S = stops[0].lat;
 let W = stops[0].lon;
 const coordinates = [];
 
-R.map(({ lat, lon }) => {
+R.map(({ lat, lon }) =>
+{
     if (lat > N)
         N = lat;
     if (lat < S)
@@ -91,7 +92,7 @@ R.map(({ lat, lon }) => {
     coordinates.push([lon, lat]);
 }, stops);
 
-const bounds = [W - 0.1, S - 0.1, E + 0.1, N + 0.1];
+const bounds = [W, S, E, N];
 
 module.exports = {
     stops,
