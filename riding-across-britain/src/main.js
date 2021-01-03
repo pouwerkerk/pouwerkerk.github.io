@@ -68,7 +68,6 @@ function drawRoute(map)
                     "Open Sans Semibold",
                     "Arial Unicode MS Bold"
                 ],
-                "text-offset": [0, 1.25],
                 "text-transform": "uppercase",
                 "text-anchor": "center"
             }
