@@ -59,7 +59,7 @@ function drawRoute(map)
         const map = new mapboxgl.Map({
             container: wrapper.id,
             bounds: bounds,
-            style: "mapbox://styles/mapbox/streets-v11"
+            style: "mapbox://styles/mapbox/dark-v10"
         });
 
         drawRoute(map);
