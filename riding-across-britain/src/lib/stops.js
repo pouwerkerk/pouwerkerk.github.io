@@ -1,4 +1,5 @@
 // src: https://www.rideacrossbritain.com/app/uploads/2019/06/national-map-stages-01.jpeg
+const R = require("ramda");
 
 const stops = [
     {
@@ -63,4 +64,28 @@ const stops = [
     }
 ];
 
-module.exports = stops;
+let N = stops[0].lat;
+let E = stops[0].lon;
+let S = stops[0].lat;
+let W = stops[0].lon;
+const coordinates = [];
+
+R.map(({ lat, lon }) => {
+    if (lat > N)
+        N = lat;
+    if (lat < S)
+        S = lat;
+    if (lon > E)
+        E = lon;
+    if (lon < W)
+        W = lon;
+    coordinates.push([lon, lat]);
+}, stops);
+
+const bounds = [W - 0.1, S - 0.1, E + 0.1, N + 0.1];
+
+module.exports = {
+    stops,
+    bounds,
+    coordinates,
+};

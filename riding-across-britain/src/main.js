@@ -1,13 +1,11 @@
 const styles = require("./static/styles.css");
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
-const stops = require("./lib/stops");
+const { coordinates, bounds } = require("./lib/stops");
 const R = require("ramda");
 
 function drawRoute(map)
 {
-    const coordinates = R.map(({ lat, lon }) => ([lon, lat]), stops);
-
     map.on('load', function ()
     {
         map.addSource('route',
@@ -52,6 +50,7 @@ function drawRoute(map)
 
         const map = new mapboxgl.Map({
             container: wrapper.id,
+            bounds: bounds,
             style: 'mapbox://styles/mapbox/streets-v11'
         });
 
