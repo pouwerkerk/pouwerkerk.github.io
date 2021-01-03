@@ -40,6 +40,7 @@ function drawRoute(map)
                     "Arial Unicode MS Bold"
                 ],
                 "text-offset": [0, 1.25],
+                "text-transform": "uppercase",
                 "text-anchor": "center"
             }
         });
