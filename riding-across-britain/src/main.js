@@ -4,24 +4,13 @@ const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 const { coordinates, bounds } = require("./lib/stops");
 const R = require("ramda");
 
+const data = require("./lib/route.json");
+
 function drawRoute(map)
 {
     map.on('load', function ()
     {
-        map.addSource('route',
-        {
-            'type': 'geojson',
-            'data':
-            {
-                'type': 'Feature',
-                'properties': {},
-                'geometry':
-                {
-                    'type': 'LineString',
-                    coordinates
-                }
-            }
-        });
+        map.addSource('route', data);
         map.addLayer({
             'id': 'route',
             'type': 'line',
