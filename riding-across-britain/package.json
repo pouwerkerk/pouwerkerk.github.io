@@ -34,6 +34,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "mapbox-gl": "^2.0.1",
     "pleasejs": "^0.4.2"
   }
 }
