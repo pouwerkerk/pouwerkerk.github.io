@@ -38,7 +38,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Pieter Ouwerkerk",
+            title: "Ride Across Britain",
             template: 'src/template.html'
         }),
     ]
