@@ -97,8 +97,9 @@ function navigateToFeature(map, feature)
 
     function linkHandler(e)
     {
+        e.preventDefault();
         const { target } = e;
-        const id = parseInt(target.getAttribute("data-index"));
+        const id = parseInt(target.getAttribute("id"));
         const feature = featureFromId(id);
         navigateToFeature(map, feature);
     }
@@ -106,16 +107,23 @@ function navigateToFeature(map, feature)
     const nav = document.createElement("nav");
     const ul = document.createElement("ul");
 
-    data.data.features.map((feature, i) =>
+    function addListItem(ul, id, text)
     {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        a.innerText = feature.properties.title;
-        a.setAttribute("data-index", i);
+        a.innerText = text;
+        a.id = id;
+        a.href = "#";
         a.onclick = linkHandler;
         li.appendChild(a);
         ul.appendChild(li);
+    }
+
+    data.data.features.map((feature, i) =>
+    {
+        addListItem(ul, i, feature.properties.title);
     });
+
     nav.appendChild(ul);
     document.body.appendChild(nav);
 })();
