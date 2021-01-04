@@ -43,3 +43,13 @@ npm run build
 ```bash
 cd dist && python -m SimpleHTTPServer 8080
 ```
+
+# TODO
+
+1. Align labels with midpoints
+2. Animate drawing lines
+3. Add back and forward buttons
+4. Add links to donation page
+5. Add description for cause
+6. Improve styling of labels
+7. Add button to reset view
