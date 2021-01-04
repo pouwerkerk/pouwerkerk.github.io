@@ -3,14 +3,15 @@ body {
   color: #fff;
   max-width: 750px;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #title
 {
   position: absolute;
   margin: 0;
-  top: 1em;
-  left: 1em;
+  top: 10pt;
+  left: 10pt;
   z-index: 1;
   display: block;
   background-size: contain;
@@ -21,6 +22,32 @@ body {
   width: 177.5px;
   height: 0;
   overflow: hidden;
+}
+
+#description
+{
+  position: absolute;
+  z-index: 1;
+  left: 10pt;
+  top: 175px;
+  color: #fff;
+  width: 177.5px;
+  margin: 0;
+}
+
+#description a
+{
+  background: rgba(255,255,255,0.1);
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  padding: 1px 5px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+#description a:hover
+{
+  background: rgba(255,255,255,0.2);
 }
 
 #map
@@ -61,7 +88,6 @@ nav li a {
   padding: 0;
   text-transform: uppercase;
   font-weight: 900;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 100px;
   transform: skew(20deg);
   color: inherit;

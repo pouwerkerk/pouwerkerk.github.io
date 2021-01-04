@@ -48,7 +48,5 @@ cd dist && python -m SimpleHTTPServer 8080
 
 1. Align labels with midpoints
 2. Animate drawing lines
-3. Add links to donation page
-4. Add description for cause
-5. Improve styling of labels
-6. Increase resolution
+3. Improve styling of labels
+4. Increase resolution
