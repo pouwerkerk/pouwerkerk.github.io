@@ -119,12 +119,18 @@ function navigateToFeature(map, feature)
     const ul = document.getElementById("main");
     const prevButton = document.getElementById("previous");
     const nextButton = document.getElementById("next");
+    const fullButton = document.getElementById("full");
 
     function navigateToFull(map)
     {
         setActive("full");
         map.fitBounds(bounds, { padding: 20 });
     }
+
+    fullButton.onclick = (e) => {
+        e.preventDefault();
+        navigateToFull(map);
+    };
 
     prevButton.onclick = (e) =>
     {
