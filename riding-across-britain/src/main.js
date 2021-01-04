@@ -84,14 +84,10 @@ function navigateToFeature(map, feature)
 
 (() =>
 {
-    const wrapper = document.createElement("div");
-    wrapper.id = "map";
-    document.body.appendChild(wrapper);
-
     mapboxgl.accessToken = "pk.eyJ1IjoicG91d2Vya2VyayIsImEiOiJjaXFqZWxkZGIwOXRoZnRuZTJ0M2hocTVrIn0.p-TeDs92ZEJ5QtaHtYH2Og";
 
     const map = new mapboxgl.Map({
-        container: wrapper.id,
+        container: "map",
         style: "mapbox://styles/mapbox/dark-v10"
     });
 
@@ -113,8 +109,8 @@ function navigateToFeature(map, feature)
         navigateToFeature(map, feature);
     }
 
-    const nav = document.createElement("nav");
-    const ul = document.createElement("ul");
+    const ul = document.getElementById("main");
+    const nextButton = document.getElementById("next");
 
     function addListItem(ul, id, text, type)
     {
@@ -125,27 +121,22 @@ function navigateToFeature(map, feature)
         {
             const daySpan = document.createElement("span");
             daySpan.innerText = "Day ";
-            daySpan.classList.add("day")
+            daySpan.classList.add("expanded");
             a.innerText = titleToId(text) + 1;
             a.prepend(daySpan);
         }
         else
-        {
             a.innerText = text;
-        }
 
         a.href = "#";
         a.onclick = linkHandler;
         li.appendChild(a);
         li.id = id;
-        ul.appendChild(li);
+        ul.insertBefore(li, nextButton);
     }
 
     data.data.features.map((feature, i) =>
     {
         addListItem(ul, i, feature.properties.title, "day");
     });
-
-    nav.appendChild(ul);
-    document.body.appendChild(nav);
 })();
