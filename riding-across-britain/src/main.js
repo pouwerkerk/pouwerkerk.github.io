@@ -4,6 +4,7 @@ const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 const { bounds } = require("./lib/stops");
 
 const data = require("./lib/route.json");
+const state = { activeId: "full" };
 
 const titleToId = title => parseInt(title.replace(/Day /, "")) - 1;
 
@@ -65,21 +66,28 @@ function drawRoute(map)
     });
 }
 
+function setActive(id)
+{
+    const results = document.querySelectorAll("nav li.active");
+    results.forEach(result => result.classList.remove("active"));
+
+    const activeFeature = document.getElementById(id);
+    activeFeature.classList.add("active");
+}
+
 function navigateToFeature(map, feature)
 {
     const { properties } = feature;
     const bounds = typeof properties.bounds === "string" ? JSON.parse(properties.bounds) : properties.bounds;
     const id = titleToId(properties.title);
 
+    state.activeId = id;
+
     map.fitBounds(bounds, {
         padding: 20
     });
 
-    const results = document.querySelectorAll("nav li.active");
-    results.forEach(result => result.classList.remove("active"));
-
-    const activeFeature = document.getElementById(id);
-    activeFeature.classList.add("active");
+    setActive(id);
 }
 
 (() =>
@@ -91,8 +99,7 @@ function navigateToFeature(map, feature)
         style: "mapbox://styles/mapbox/dark-v10"
     });
 
-    map.fitBounds(bounds, { padding: 20 });
-
+    navigateToFull(map);
     drawRoute(map);
 
     function featureFromId(id)
@@ -110,7 +117,50 @@ function navigateToFeature(map, feature)
     }
 
     const ul = document.getElementById("main");
+    const prevButton = document.getElementById("previous");
     const nextButton = document.getElementById("next");
+
+    function navigateToFull(map)
+    {
+        setActive("full");
+        map.fitBounds(bounds, { padding: 20 });
+    }
+
+    prevButton.onclick = (e) =>
+    {
+        e.preventDefault();
+        if (state.activeId === 0)
+        {
+            state.activeId = "full";
+            return navigateToFull(map);
+        }
+
+        if (state.activeId === "full")
+            state.activeId = data.data.features.length - 1;
+        else if (state.activeId > 0)
+            state.activeId--;
+
+        const feature = featureFromId(parseInt(state.activeId));
+        navigateToFeature(map, feature);
+    };
+
+    nextButton.onclick = (e) =>
+    {
+        e.preventDefault();
+        if (state.activeId === data.data.features.length - 1)
+        {
+            state.activeId = "full";
+            return navigateToFull(map);
+        }
+
+        if (state.activeId === "full")
+            state.activeId = 0;
+        else if (state.activeId <= data.data.features.length - 1)
+            state.activeId++;
+
+        const feature = featureFromId(parseInt(state.activeId));
+        navigateToFeature(map, feature);
+    };
 
     function addListItem(ul, id, text, type)
     {
