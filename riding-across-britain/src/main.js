@@ -5,15 +5,6 @@ const { bounds } = require("./lib/stops");
 
 const data = require("./lib/route.json");
 
-function getBoundingBox(feature)
-{
-    const { coordinates } = feature.geometry;
-    return coordinates.reduce(function (bounds, coord)
-    {
-        return bounds.extend(coord);
-    }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
-}
-
 function drawRoute(map)
 {
     map.on("load", () =>
@@ -38,7 +29,7 @@ function drawRoute(map)
 
         map.on("click", "route", function (e)
         {
-            const bounds = getBoundingBox(e.features[0]);
+            const bounds = JSON.parse(e.features[0].properties.bounds);
             map.fitBounds(bounds, {
                 padding: 20
             });
