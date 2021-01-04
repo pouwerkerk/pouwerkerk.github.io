@@ -78,7 +78,7 @@ function navigateToFeature(map, feature)
     const results = document.querySelectorAll("nav li.active");
     results.forEach(result => result.classList.remove("active"));
 
-    const activeFeature = document.getElementById(id).parentElement;
+    const activeFeature = document.getElementById(id);
     activeFeature.classList.add("active");
 }
 
@@ -107,9 +107,9 @@ function navigateToFeature(map, feature)
     function linkHandler(e)
     {
         e.preventDefault();
-        const { target } = e;
-        const id = parseInt(target.getAttribute("id"));
-        const feature = featureFromId(id);
+        const target = e.path.find(el => el.id);
+        const id = target.id;
+        const feature = featureFromId(parseInt(id));
         navigateToFeature(map, feature);
     }
 
@@ -134,10 +134,10 @@ function navigateToFeature(map, feature)
             a.innerText = text;
         }
 
-        a.id = id;
         a.href = "#";
         a.onclick = linkHandler;
         li.appendChild(a);
+        li.id = id;
         ul.appendChild(li);
     }
 
