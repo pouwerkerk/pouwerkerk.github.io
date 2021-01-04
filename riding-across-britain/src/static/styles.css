@@ -49,7 +49,17 @@ nav li a {
   color: inherit;
 }
 
-nav li.active,
+nav li.active
+{
+  background: yellow;
+  color: #000;
+}
+
+nav li.active:hover {
+  background: #988809;
+  color: #fff;
+}
+
 nav li:hover {
   background: #000;
   color: #fff;
