@@ -67,10 +67,17 @@ function navigateToFeature(map, feature)
 {
     const { properties } = feature;
     const bounds = typeof properties.bounds === "string" ? JSON.parse(properties.bounds) : properties.bounds;
+    const id = parseInt(properties.title.replace(/Day /, "")) - 1;
 
     map.fitBounds(bounds, {
         padding: 20
     });
+
+    const results = document.querySelectorAll("nav li.active");
+    results.forEach(result => result.classList.remove("active"));
+
+    const activeFeature = document.getElementById(id).parentElement;
+    activeFeature.classList.add("active");
 }
 
 (() =>
