@@ -78,17 +78,44 @@ function navigateToFeature(map, feature)
     const wrapper = document.createElement("div");
     wrapper.id = "map";
     document.body.appendChild(wrapper);
-    if (wrapper)
+
+    mapboxgl.accessToken = "pk.eyJ1IjoicG91d2Vya2VyayIsImEiOiJjaXFqZWxkZGIwOXRoZnRuZTJ0M2hocTVrIn0.p-TeDs92ZEJ5QtaHtYH2Og";
+
+    const map = new mapboxgl.Map({
+        container: wrapper.id,
+        style: "mapbox://styles/mapbox/dark-v10"
+    });
+
+    map.fitBounds(bounds, { padding: 20 });
+
+    drawRoute(map);
+
+    function featureFromId(id)
     {
-        mapboxgl.accessToken = "pk.eyJ1IjoicG91d2Vya2VyayIsImEiOiJjaXFqZWxkZGIwOXRoZnRuZTJ0M2hocTVrIn0.p-TeDs92ZEJ5QtaHtYH2Og";
-
-        const map = new mapboxgl.Map({
-            container: wrapper.id,
-            style: "mapbox://styles/mapbox/dark-v10"
-        });
-
-        map.fitBounds(bounds, { padding: 20 });
-
-        drawRoute(map);
+        return data.data.features[id];
     }
+
+    function linkHandler(e)
+    {
+        const { target } = e;
+        const id = parseInt(target.getAttribute("data-index"));
+        const feature = featureFromId(id);
+        navigateToFeature(map, feature);
+    }
+
+    const nav = document.createElement("nav");
+    const ul = document.createElement("ul");
+
+    data.data.features.map((feature, i) =>
+    {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.innerText = feature.properties.title;
+        a.setAttribute("data-index", i);
+        a.onclick = linkHandler;
+        li.appendChild(a);
+        ul.appendChild(li);
+    });
+    nav.appendChild(ul);
+    document.body.appendChild(nav);
 })();
