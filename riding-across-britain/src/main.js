@@ -5,6 +5,8 @@ const { bounds } = require("./lib/stops");
 
 const data = require("./lib/route.json");
 
+const titleToId = title => parseInt(title.replace(/Day /, "")) - 1;
+
 function drawRoute(map)
 {
     map.on("load", () =>
@@ -67,7 +69,7 @@ function navigateToFeature(map, feature)
 {
     const { properties } = feature;
     const bounds = typeof properties.bounds === "string" ? JSON.parse(properties.bounds) : properties.bounds;
-    const id = parseInt(properties.title.replace(/Day /, "")) - 1;
+    const id = titleToId(properties.title);
 
     map.fitBounds(bounds, {
         padding: 20
@@ -114,11 +116,24 @@ function navigateToFeature(map, feature)
     const nav = document.createElement("nav");
     const ul = document.createElement("ul");
 
-    function addListItem(ul, id, text)
+    function addListItem(ul, id, text, type)
     {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        a.innerText = text;
+
+        if (type === "day")
+        {
+            const daySpan = document.createElement("span");
+            daySpan.innerText = "Day ";
+            daySpan.classList.add("day")
+            a.innerText = titleToId(text) + 1;
+            a.prepend(daySpan);
+        }
+        else
+        {
+            a.innerText = text;
+        }
+
         a.id = id;
         a.href = "#";
         a.onclick = linkHandler;
@@ -128,7 +143,7 @@ function navigateToFeature(map, feature)
 
     data.data.features.map((feature, i) =>
     {
-        addListItem(ul, i, feature.properties.title);
+        addListItem(ul, i, feature.properties.title, "day");
     });
 
     nav.appendChild(ul);
