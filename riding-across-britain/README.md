@@ -51,3 +51,5 @@ cd dist && python -m SimpleHTTPServer 8080
 3. Add links to donation page
 4. Add description for cause
 5. Improve styling of labels
+6. Add logo
+7. Increase resolution
