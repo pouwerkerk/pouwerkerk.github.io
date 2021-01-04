@@ -29,10 +29,7 @@ function drawRoute(map)
 
         map.on("click", "route", function (e)
         {
-            const bounds = JSON.parse(e.features[0].properties.bounds);
-            map.fitBounds(bounds, {
-                padding: 20
-            });
+            navigateToFeature(map, e.features[0]);
         });
 
         // Change the cursor to a pointer when the mouse is over the states layer.
@@ -63,6 +60,16 @@ function drawRoute(map)
                 "text-anchor": "center"
             }
         });
+    });
+}
+
+function navigateToFeature(map, feature)
+{
+    const { properties } = feature;
+    const bounds = typeof properties.bounds === "string" ? JSON.parse(properties.bounds) : properties.bounds;
+
+    map.fitBounds(bounds, {
+        padding: 20
     });
 }
 
