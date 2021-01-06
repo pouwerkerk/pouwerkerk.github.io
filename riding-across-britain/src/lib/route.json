@@ -2515,6 +2515,123 @@
             58.540375698255886
           ]
         }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 1"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -4.861660819079027,
+            50.422492815131335
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 2"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.126059029149262,
+            51.02206049174641
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 3"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -2.6754804774343937,
+            51.7786896679335
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 4"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -2.5252506555148164,
+            52.9352681345633
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 5"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -2.7652472516074784,
+            54.225229217374505
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 6"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.5566035984095237,
+            55.40390744470071
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 7"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.3938712540050333,
+            56.64255068319521
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 8"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -4.140721561119564,
+            57.441486334470895
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "title": "Day 9"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -4.135632392794912,
+            58.540375698255886
+          ]
+        }
       }
     ]
   }

@@ -5,6 +5,7 @@ const { bounds } = require("./lib/stops");
 
 const data = require("./lib/route.json");
 const state = { activeId: "full" };
+const days = data.data.features.filter((feature) => feature.geometry.type === "LineString");
 
 const titleToId = title => parseInt(title.replace(/Day /, "")) - 1;
 
@@ -50,7 +51,8 @@ function drawRoute(map)
                 "line-color": "#fff",
                 "line-width": 5,
                 "line-opacity": 0.75
-            }
+            },
+            filter: ["==", "$type", "LineString"]
         });
 
         map.on("click", "route", function (e)
@@ -71,7 +73,7 @@ function drawRoute(map)
         });
 
         map.addLayer({
-            id: "points",
+            id: "labels",
             type: "symbol",
             source: "route",
             layout:
@@ -79,12 +81,36 @@ function drawRoute(map)
                 // get the title name from the source's "title" property
                 "text-field": ["get", "title"],
                 "text-font": [
+                    "DIN Pro Bold",
                     "Open Sans Semibold",
-                    "Arial Unicode MS Bold"
+                    "Arial Unicode MS Bold",
                 ],
+                "text-letter-spacing": 0.05,
                 "text-transform": "uppercase",
-                "text-anchor": "center"
-            }
+                "text-anchor": "right",
+                "text-offset": [-1, 0],
+
+            },
+            paint: {
+                "text-color": "yellow",
+                "text-halo-color": "rgba(0,0,0,0.3)",
+                "text-halo-width": 1,
+                "text-halo-blur": 2.5,
+            },
+            filter: ["==", "$type", "Point"]
+        });
+        map.addLayer({
+            id: "points",
+            type: "circle",
+            source: "route",
+            layout:
+            {
+            },
+            paint: {
+                "circle-color": "yellow",
+                "circle-radius": 3,
+            },
+            filter: ["==", "$type", "Point"]
         });
     });
 }
@@ -128,7 +154,7 @@ function navigateToFeature(map, feature)
 
     function featureFromId(id)
     {
-        return data.data.features[id];
+        return days[id];
     }
 
     function linkHandler(e)
@@ -166,7 +192,7 @@ function navigateToFeature(map, feature)
         }
 
         if (state.activeId === "full")
-            state.activeId = data.data.features.length - 1;
+            state.activeId = days.length - 1;
         else if (state.activeId > 0)
             state.activeId--;
 
@@ -177,7 +203,7 @@ function navigateToFeature(map, feature)
     nextButton.onclick = (e) =>
     {
         e.preventDefault();
-        if (state.activeId === data.data.features.length - 1)
+        if (state.activeId === days.length - 1)
         {
             state.activeId = "full";
             return navigateToFull(map);
@@ -185,7 +211,7 @@ function navigateToFeature(map, feature)
 
         if (state.activeId === "full")
             state.activeId = 0;
-        else if (state.activeId <= data.data.features.length - 1)
+        else if (state.activeId <= days.length - 1)
             state.activeId++;
 
         const feature = featureFromId(parseInt(state.activeId));
@@ -215,7 +241,7 @@ function navigateToFeature(map, feature)
         ul.insertBefore(li, nextButton);
     }
 
-    data.data.features.map((feature, i) =>
+    days.map((feature, i) =>
     {
         addListItem(ul, i, feature.properties.title, "day");
     });
