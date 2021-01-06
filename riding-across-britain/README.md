@@ -49,4 +49,4 @@ cd dist && python -m SimpleHTTPServer 8080
 1. Align labels with midpoints
 2. Animate drawing lines
 3. Improve styling of labels
-4. Darkmode
+4. Add dark mode support
