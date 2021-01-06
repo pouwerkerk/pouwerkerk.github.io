@@ -50,3 +50,5 @@ cd dist && python -m SimpleHTTPServer 8080
 2. Animate drawing lines
 3. Improve styling of labels
 4. Load low-res full map, but high res segments
+5. Change map label/line color on dark/light mode
+6. Simplify data
