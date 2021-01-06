@@ -144,4 +144,9 @@ nav li.active, nav li:active
     background: #52d7e0;
     color: #000;
   }
+
+  #title
+  {
+    background-image: url("./img/rablogo-light.png");
+  }
 }
