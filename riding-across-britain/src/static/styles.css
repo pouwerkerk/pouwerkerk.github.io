@@ -115,3 +115,12 @@ nav li:hover {
   background: #000;
   color: #fff;
 }
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: #aaa;
+  }
+  nav li:hover {
+    background: #999;
+  }
+}

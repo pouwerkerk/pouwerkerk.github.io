@@ -8,6 +8,29 @@ const state = { activeId: "full" };
 
 const titleToId = title => parseInt(title.replace(/Day /, "")) - 1;
 
+function setMode(map, dark = true)
+{
+    const theme = dark ? "dark-v10" : "light-v10";
+    map.setStyle(`mapbox://styles/mapbox/${theme}`);
+}
+
+function matchModeToUserPreference(map)
+{
+    if (window.matchMedia)
+    {
+        if (window.matchMedia("(prefers-color-scheme: light)").matches)
+            setMode(map, false);
+
+        window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", event =>
+        {
+            if (event.matches)
+                setMode(map, false);
+            else
+                setMode(map, true);
+        });
+    }
+}
+
 function drawRoute(map)
 {
     map.on("load", () =>
@@ -99,6 +122,7 @@ function navigateToFeature(map, feature)
         style: "mapbox://styles/mapbox/dark-v10"
     });
 
+    matchModeToUserPreference(map);
     navigateToFull(map);
     drawRoute(map);
 
