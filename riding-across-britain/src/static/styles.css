@@ -30,7 +30,6 @@ body {
   z-index: 1;
   left: 10pt;
   top: 175px;
-  color: #fff;
   width: 177.5px;
   margin: 0;
 }
@@ -39,7 +38,7 @@ body {
 {
   background: rgba(255,255,255,0.1);
   border-bottom: 1px solid #fff;
-  color: #fff;
+  color: inherit;
   padding: 1px 5px;
   text-decoration: none;
   border-radius: 3px;
@@ -100,12 +99,6 @@ nav li a {
   }
 }
 
-nav li.active
-{
-  background: yellow;
-  color: #000;
-}
-
 nav li.active:hover {
   background: #988809;
   color: #fff;
@@ -116,11 +109,39 @@ nav li:hover {
   color: #fff;
 }
 
+nav li.active, nav li:active
+{
+  background: yellow;
+  color: #000;
+}
+
 @media (prefers-color-scheme: light) {
   body {
     background: #aaa;
+    color: #6b6b6b;
   }
   nav li:hover {
-    background: #999;
+    background: #6b6b6b;
+  }
+
+  #description a {
+    background: rgba(0,0,0,0.05);
+    border-bottom: 1px solid #6b6b6b;
+  }
+
+  #description a:hover
+  {
+    background: rgba(0,0,0,0.1);
+  }
+
+  nav li.active:hover
+  {
+    background: #25c0cb;
+  }
+
+  nav li.active, nav li:active
+  {
+    background: #52d7e0;
+    color: #000;
   }
 }
